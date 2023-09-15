@@ -68,7 +68,8 @@ wss.on('connection', (client) => {
                 const init = {
                     type: "init",
                     message: "init test",
-                    maxScore
+                    maxScore,
+                    teams
                 }
                 client.send(JSON.stringify(init))
             }
@@ -152,6 +153,7 @@ function reset()
     teams.green.score = 0
 }
 
-server.listen(process.argv[2] || 8080, () => {
-    console.log(`server listening...`);
+const port = process.argv[2] || 8080;
+server.listen(port, () => {
+    console.log(`server listening on port ${port}`);
 })

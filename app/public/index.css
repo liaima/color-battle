@@ -14,49 +14,48 @@ flex-direction:column;
 width: 30%;
 height: 70vh;
 }
-.msg{
+h1{
+color:blueviolet;
+font-size: 3rem;
+}
+h2{
 color:blueviolet;
 font-size: 2rem;
 }
-.msgCtn{
-margin: 1rem 0;
-color: white;
-padding: 1rem 1rem;
-background-color: blueviolet;
-border-radius: 6px;
-font-size: 2rem
-}
-.msgForm{
-display:flex;
-flex-direction:row;
-}
-.input{
-height: 100%;
-flex: 4;
-margin-right: 2rem;
-border:none;
-border-radius: .5rem;
-padding: 2px 1rem;
-font-size: 1.5rem;
-background-color:aliceblue;
-}
-.input:focus{
-background-color:white;
-}
+
 .btn{
-height:5rem;
+height:2em;
 flex: 1;
 display:flex;
 justify-content:center;
 align-items:center;
 border-radius: .5rem;
-background-color:blueviolet;
+background-color:#1A237E;
 color: whitesmoke;
 border:none;
 font-size: 1.6rem;
+text-decoration: none;
 }
 
+.btn:hover{
+  background-color:#303F9F;
+  cursor: pointer;
+}
 
+.btn:active{
+  background-color:#1976D2;
+}
+
+.flex{
+  display: flex;
+  margin: 1em;
+}
+
+#teamColor{
+  width: 100px;
+  height: 80%;
+  margin: 1em;
+}
 
 #redProg::-moz-progress-bar{
   background: red;
