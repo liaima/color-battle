@@ -17,10 +17,10 @@ const teams = {
     }
 }
 const admins = []
-const maxScore = 10;
+const maxScore = 100;
 const game = {
     status: 'in_process',
-    max_score: 10,
+    max_score: 100,
     winner: null
 }
 
@@ -141,6 +141,11 @@ function removeClient(client){
     index = teams.green.members.indexOf(client);
     if ( index >= 0 ) {
         teams.green.members.splice(index, 1);
+        return true;
+    }
+    index = admins.indexOf(client)
+    if( index >= 0 ) {
+        admins.splice(index, 1);
         return true;
     }
     return false;
