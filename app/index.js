@@ -96,6 +96,8 @@ wss.on('connection', (client) => {
                 type: 'reset'
             })
             broadcast(msg, clients)
+        } else if ( data.type === 'set-max_score' ) {
+            game.max_score = data.maxScore;
         }
         console.log(teams)
         //broadcast(msg)

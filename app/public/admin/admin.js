@@ -43,11 +43,7 @@ if(localStorage.getItem('color-battle-admin')){
          }
      }
      document.getElementById('reset').addEventListener('click', (e) => {
-         console.log("Reset");
-         ws.send(JSON.stringify({
-             type: 'reset'
-         }));
-         location.reload()
+         reset()
     })
 
     const ipInput = document.getElementById('ip-input')
@@ -57,7 +53,12 @@ if(localStorage.getItem('color-battle-admin')){
     document.getElementById('set-ip-btn').addEventListener('click', (e) => {
         makeQr(ipInput.value)
     })
-    
+
+    document.getElementById('set-max-score-btn').addEventListener('click', (e) => {
+        console.log('max')
+        setMaxScore(document.getElementById('max-score-input').value)
+    })
+   
     function setTeamsValues(data)
     {
         document.getElementById('redProg').value = data.teams.red.score;
@@ -80,6 +81,24 @@ if(localStorage.getItem('color-battle-admin')){
     function makeQr(ip)
     {
         new QRCode(document.getElementById("qrcode"), `http://${ip}`);
+    }
+
+    function setMaxScore(maxScore)
+    {
+        ws.send(JSON.stringify({
+            type: 'set-max_score',
+            maxScore
+        }));
+        reset()
+    }
+
+    function reset()
+    {
+        console.log("Reset");
+        ws.send(JSON.stringify({
+            type: 'reset'
+        }));
+        location.reload()
     }
 
 } else {
