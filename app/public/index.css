@@ -33,7 +33,7 @@ border-radius: .5rem;
 background-color:#1A237E;
 color: whitesmoke;
 border:none;
-font-size: 1.6rem;
+font-size: 2rem;
 text-decoration: none;
 }
 
@@ -49,6 +49,10 @@ text-decoration: none;
 .flex{
   display: flex;
   margin: 1em;
+}
+
+#notPermission{
+  display: none;
 }
 
 #teamColor{
