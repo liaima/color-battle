@@ -8,4 +8,4 @@ services:
     working_dir: /app
     command: ['npm', 'start']
     ports:
-      - 8080:8080
+      - $EXPOSE_PORT:8080
