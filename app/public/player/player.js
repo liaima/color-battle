@@ -36,6 +36,8 @@ ws.onmessage = function (message) {
             } else {
                 winMessage.innerHTML = '<p>YOU LOSE!!</p>'
             }
+        } else if ( data.type === 'reset' ) {
+            location.reload()
         }
         console.log("Result2: " + message.data);
     }

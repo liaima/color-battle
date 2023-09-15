@@ -80,6 +80,11 @@ wss.on('connection', (client) => {
                  teams
              } 
             broadcastAdmin(JSON.stringify(adminData))
+            const clients = [...teams.red.members, ...teams.green.members] 
+            const msg = JSON.stringify({
+                type: 'reset'
+            })
+            broadcast(msg, clients)
         }
         console.log(teams)
         //broadcast(msg)
