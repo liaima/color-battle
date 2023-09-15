@@ -18,6 +18,11 @@ const teams = {
 }
 const admins = []
 const maxScore = 10;
+const game = {
+    status: 'in_process',
+    max_score: 10,
+    winner: null
+}
 
 wss.on('connection', (client) => {
     console.log('Client connected !')
@@ -38,13 +43,17 @@ wss.on('connection', (client) => {
                     teams
                 } 
             }else{
+                game.winner = winner;
+                game.status = 'finished';
                 adminData = {
                     type: 'winner',
+                    game,
                     winner
                 }
                 const clients = [...teams.red.members, ...teams.green.members] 
                 const msg = JSON.stringify({
                     type: 'winner',
+                    game,
                     winner
                 })
                 broadcast(msg, clients)
@@ -60,7 +69,8 @@ wss.on('connection', (client) => {
                     type: "init",
                     message: "init test",
                     team: asignedTeam,
-                    maxScore
+                    maxScore: game.max_score,
+                    game,
                 }
                 client.send(JSON.stringify(init))
             } else if ( data.user === 'admin' ) {
@@ -68,7 +78,8 @@ wss.on('connection', (client) => {
                 const init = {
                     type: "init",
                     message: "init test",
-                    maxScore,
+                    maxScore: game.max_score,
+                    game,
                     teams
                 }
                 client.send(JSON.stringify(init))

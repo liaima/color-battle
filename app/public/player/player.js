@@ -25,16 +25,15 @@ ws.onmessage = function (message) {
         if(data.type === "init"){
             console.info(data.message)
             team = data.team
+            if(data.game.status === 'finished'){
+                showOverlay('GAME FINSHED')
+            }
             document.getElementById('teamColor').style.background = team;
         } else if ( data.type === 'winner' ){
-            const winMessage = document.getElementById('win-message')
-            winMessage.style.display = 'flex';
-            winMessage.style.alignItems = 'center';
-            winMessage.style.justifyContent = 'center';
             if(team === data.winner){
-                winMessage.innerHTML = '<p>YOU WIN!!</p>'
+                showOverlay('<p>YOU WIN!!</p>')
             } else {
-                winMessage.innerHTML = '<p>YOU LOSE!!</p>'
+                showOverlay('<p>YOU LOSE!!</p>')
             }
         } else if ( data.type === 'reset' ) {
             location.reload()
@@ -53,4 +52,15 @@ btn.addEventListener('click', (event) => {
     }
     ws.send(JSON.stringify(data));
 })
+
+function showOverlay(msg)
+{
+    const overlay = document.getElementById('overlay')
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+
+    overlay.innerHTML = msg
+
+}
 

@@ -37,12 +37,8 @@ if(localStorage.getItem('color-battle-admin')){
                 document.getElementById(data.winner + 'Title').style.color = 'orange';
                 winner.value = winner.max;
                 document.getElementById(data.winner + 'Value').innerHTML = winner.value + " clicks";
-                const winMessage = document.getElementById('win-message')
-                winMessage.style.display = 'flex';
-                winMessage.style.alignItems = 'center';
-                winMessage.style.justifyContent = 'center';
                 const winValue = data.winner.toUpperCase()
-                winMessage.innerHTML = `<p>${winValue} WINS!!</p>`
+                showOverlay(`<p>${winValue} WINS!!</p>`)
              }
          }
      }
@@ -62,6 +58,15 @@ if(localStorage.getItem('color-battle-admin')){
         document.getElementById('greenValue').innerHTML = data.teams.green.score + " clicks";
         console.info('Red: ' + data.teams.red.score)
         console.info('Green: ' + data.teams.green.score)
+    }
+
+    function showOverlay(msg)
+    {
+        const overlay = document.getElementById('overlay')
+        overlay.style.display = 'flex';
+        overlay.style.alignItems = 'center';
+        overlay.style.justifyContent = 'center';
+        overlay.innerHTML = msg
     }
 
 } else {
