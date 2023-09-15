@@ -9,10 +9,11 @@ justify-content:center;
 }
 .container{
 margin-top: 5rem;
-display:flex;
-flex-direction:column;
-width: 30%;
+width: 50%;
 height: 70vh;
+}
+@media (max-width: 481px) {
+    .container { width: 80%; }
 }
 h1{
 color:blueviolet;
@@ -24,17 +25,21 @@ font-size: 2rem;
 }
 
 .btn{
-height:2em;
-flex: 1;
-display:flex;
-justify-content:center;
-align-items:center;
+height:4em;
+width: 100%;
 border-radius: .5rem;
 background-color:#1A237E;
 color: whitesmoke;
 border:none;
 font-size: 2rem;
 text-decoration: none;
+margin: 0.5em;
+}
+
+.btn-sm{
+height:2em;
+font-size: 1em;
+width: 20%;
 }
 
 .btn:hover{
@@ -57,7 +62,6 @@ text-decoration: none;
 
 #teamColor{
   width: 100px;
-  height: 80%;
   margin: 1em;
 }
 

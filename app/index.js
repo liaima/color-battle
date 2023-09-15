@@ -167,6 +167,8 @@ function reset()
 {
     teams.red.score = 0
     teams.green.score = 0
+    game.status = 'in_process'
+    game.winner = null
 }
 
 const port = process.argv[2] || 8080;

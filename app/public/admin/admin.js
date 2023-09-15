@@ -49,6 +49,14 @@ if(localStorage.getItem('color-battle-admin')){
          }));
          location.reload()
     })
+
+    const ipInput = document.getElementById('ip-input')
+    if(ipInput.value){
+        makeQr(ipInput.value)
+    }
+    document.getElementById('set-ip-btn').addEventListener('click', (e) => {
+        makeQr(ipInput.value)
+    })
     
     function setTeamsValues(data)
     {
@@ -67,6 +75,11 @@ if(localStorage.getItem('color-battle-admin')){
         overlay.style.alignItems = 'center';
         overlay.style.justifyContent = 'center';
         overlay.innerHTML = msg
+    }
+
+    function makeQr(ip)
+    {
+        new QRCode(document.getElementById("qrcode"), `http://${ip}`);
     }
 
 } else {

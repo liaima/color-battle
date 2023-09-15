@@ -12,7 +12,8 @@
 
 <body>
     <div id="main" class="container">
-        <h2>Admin</h2>
+        <h1>Admin Panel</h1>
+        <h2>Teams scores</h2>
         <h4 id='redTitle'>Red</h4>
         <div class="progress-group">
             <progress id="redProg" value="0" max="100"></progress>
@@ -23,16 +24,26 @@
             <progress id="greenProg" value="0" max="100"></progress>
             <p id="greenValue">0 clicks</p>
         </div>
-
-        <div id="overlay">
-          <p>You win</p>
+        <div id="ip-qr">
+            <h2>Conection Info: </h2>
+            <div class="flex">
+                <h4>http:://</h4>
+                <input id="ip-input" type="text">
+            </div>
+            <div id="qrcode" src="" alt="">
         </div>
 
-        <button id="reset">Reset</button>
+        <div id="overlay">
+          <p></p>
+        </div>
+
+        <button id="reset" class="btn btn-sm">Reset game</button>
+        <button id="set-ip-btn" class="btn btn-sm">Set ip</button>
     </div>
     <div id="notPermission">
         <h1>Permission denied</h1>
     </div>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script src="/admin/admin.js"></script>
 </body>
 
