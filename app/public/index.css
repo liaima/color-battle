@@ -32,12 +32,18 @@ background-color:#1A237E;
 color: whitesmoke;
 border:none;
 font-size: 2rem;
-text-decoration: none;
 margin: 0.5em;
 }
 
+a.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
 .btn-sm{
-height:2em;
+height:3em;
 font-size: 1em;
 width: 20%;
 }
