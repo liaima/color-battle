@@ -97,6 +97,21 @@ wss.on('connection', (client) => {
             broadcast(msg, clients)
         } else if ( data.type === 'set-max_score' ) {
             game.max_score = data.maxScore;
+        } else if ( data.type === 'pause') {
+            if(game.status === 'in_process'){
+                game.status = 'pause'
+            }else if(game.status === 'pause'){
+                game.status = 'in_process'
+            }
+            const clients = [...teams.red.members, ...teams.green.members] 
+            const msg = JSON.stringify({
+                type: 'pause',
+                game,
+            })
+            broadcast(msg, clients)
+            broadcastAdmin(msg)
+
+
         }
         console.log(teams)
         //broadcast(msg)

@@ -39,11 +39,22 @@ if(localStorage.getItem('color-battle-admin')){
                 document.getElementById(data.winner + 'Value').innerHTML = winner.value + " clicks";
                 const winValue = data.winner.toUpperCase()
                 showOverlay(`<p>${winValue} WINS!!</p><button class="btn btn-sm" onClick="closeOverlay()">Close</button>`)
+             } else if ( data.type === 'pause' ) {
+                const pauseBtn = document.getElementById('pause-btn');
+                 if(data.game.status === 'pause'){
+                     pauseBtn.innerHTML = 'Un Pause'
+                 }else{
+                     pauseBtn.innerHTML = 'Pause'
+                 }
              }
          }
      }
     document.getElementById('reset').addEventListener('click', (e) => {
          reset()
+    })
+
+    document.getElementById('pause-btn').addEventListener('click', (e) => {
+         pause()
     })
 
     const ipInput = document.getElementById('ip-input')
@@ -85,7 +96,6 @@ if(localStorage.getItem('color-battle-admin')){
         overlay.style.display = 'none';
     }
 
-
     function makeQr(ip)
     {
         new QRCode(document.getElementById("qrcode"), `http://${ip}`);
@@ -107,6 +117,13 @@ if(localStorage.getItem('color-battle-admin')){
             type: 'reset'
         }));
         location.reload()
+    }
+
+    function pause()
+    {
+        ws.send(JSON.stringify({
+            type: 'pause'
+        }))
     }
 
 } else {

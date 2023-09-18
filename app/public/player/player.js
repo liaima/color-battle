@@ -37,6 +37,12 @@ ws.onmessage = function (message) {
             }
         } else if ( data.type === 'reset' ) {
             location.reload()
+        } else if ( data.type === 'pause' ) {
+            if(data.game.status === 'pause'){
+                showOverlay('<p>Game Paused</p>')
+            }else{
+               closeOverlay() 
+            }
         }
         console.log("Result2: " + message.data);
     }
@@ -63,4 +69,12 @@ function showOverlay(msg)
     overlay.innerHTML = msg
 
 }
+
+function closeOverlay()
+{
+    console.log('close')
+    const overlay = document.getElementById('overlay')
+    overlay.style.display = 'none';
+}
+
 
