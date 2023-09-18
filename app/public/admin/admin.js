@@ -38,11 +38,11 @@ if(localStorage.getItem('color-battle-admin')){
                 winner.value = winner.max;
                 document.getElementById(data.winner + 'Value').innerHTML = winner.value + " clicks";
                 const winValue = data.winner.toUpperCase()
-                showOverlay(`<p>${winValue} WINS!!</p>`)
+                showOverlay(`<p>${winValue} WINS!!</p><button class="btn btn-sm" onClick="closeOverlay()">Close</button>`)
              }
          }
      }
-     document.getElementById('reset').addEventListener('click', (e) => {
+    document.getElementById('reset').addEventListener('click', (e) => {
          reset()
     })
 
@@ -77,6 +77,14 @@ if(localStorage.getItem('color-battle-admin')){
         overlay.style.justifyContent = 'center';
         overlay.innerHTML = msg
     }
+
+    function closeOverlay()
+    {
+        console.log('close')
+        const overlay = document.getElementById('overlay')
+        overlay.style.display = 'none';
+    }
+
 
     function makeQr(ip)
     {

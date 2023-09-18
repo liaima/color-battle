@@ -17,7 +17,6 @@ const teams = {
     }
 }
 const admins = []
-const maxScore = 100;
 const game = {
     status: 'in_process',
     max_score: 100,
@@ -157,12 +156,12 @@ function scoreUp(team)
 {
     if ( team === 'red' ) {
         teams.red.score ++
-        if (teams.red.score >= maxScore){
+        if (teams.red.score >= game.max_score){
             return 'red'
         }
     } else if ( team === 'green' ) {
         teams.green.score ++
-        if (teams.green.score >= maxScore){
+        if (teams.green.score >= game.max_score){
             return 'green'
         }
     }
