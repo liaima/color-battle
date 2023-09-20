@@ -11,6 +11,7 @@ ws.addEventListener("open", event => {
 });
 ws.addEventListener("close", event => {
     console.log("Websocket connection closed");
+    showOverlay('<p>You Disconnected</p>')
 });
 ws.onmessage = function (message) {
     if (message.data instanceof Blob) {
@@ -55,10 +56,11 @@ btn.addEventListener('click', (event) => {
     event.preventDefault();
     const data = {
         type: 'attack',
-        message: '',
+        value: 1,
         team
     }
     ws.send(JSON.stringify(data));
+    showBonus()
 })
 
 function showOverlay(msg)
@@ -77,6 +79,32 @@ function closeOverlay()
     console.log('close')
     const overlay = document.getElementById('overlay')
     overlay.style.display = 'none';
+}
+
+function showBonus()
+{
+    const bonusBtn = document.getElementById('bonus-att-btn')
+    if(bonusBtn.style.display != 'block'){
+        const bonusProbably = 20
+        const show =(Math.floor(Math.random() * bonusProbably) + 1) === bonusProbably
+        if(show){
+            const attackValue = Math.floor(Math.random() * 9) + 2
+            bonusBtn.innerText = 'Attack x ' + attackValue
+            bonusBtn.style.display = 'block'
+            bonusBtn.setAttribute('onclick', `bonusAttack(${attackValue})`)
+        }
+    }
+}
+
+function bonusAttack(value)
+{
+    const data = {
+        type: 'attack',
+        value,
+        team
+    }
+    ws.send(JSON.stringify(data));
+    document.getElementById('bonus-att-btn').style.display = 'none'
 }
 
 

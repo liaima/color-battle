@@ -34,7 +34,8 @@ wss.on('connection', (client) => {
         console.log(`Message:${msg}`);
         const data = JSON.parse(msg);
         if( data.type === 'attack' ){
-            const winner = scoreUp(data.team)
+            console.log(data)
+            const winner = scoreUp(data.team, data.value)
             let adminData = {};
             if(!winner){
                adminData = {
@@ -167,15 +168,15 @@ function removeClient(client){
     return false;
 }
 
-function scoreUp(team)
+function scoreUp(team, value)
 {
     if ( team === 'red' ) {
-        teams.red.score ++
+        teams.red.score += parseInt(value)
         if (teams.red.score >= game.max_score){
             return 'red'
         }
     } else if ( team === 'green' ) {
-        teams.green.score ++
+        teams.green.score += parseInt(value)
         if (teams.green.score >= game.max_score){
             return 'green'
         }

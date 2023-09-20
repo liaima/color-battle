@@ -35,6 +35,10 @@ font-size: 2rem;
 margin: 0.5em;
 }
 
+.btn-orange{
+  background-color:orange;
+}
+
 a.btn{
   display: flex;
   justify-content: center;
