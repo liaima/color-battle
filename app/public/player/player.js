@@ -27,6 +27,8 @@ ws.onmessage = function (message) {
             team = data.team
             if(data.game.status === 'finished'){
                 showOverlay('GAME FINSHED')
+            } else if (data.game.status === 'pause'){
+                showOverlay('<p>Game Paused</p>')
             }
             document.getElementById('teamColor').style.background = team;
         } else if ( data.type === 'winner' ){
