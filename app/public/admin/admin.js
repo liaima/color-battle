@@ -34,7 +34,6 @@ if(localStorage.getItem('color-battle-admin')){
                 setTeamsValues(data)
             } else if ( data.type === 'winner' ) {
                 const loser = document.getElementById(data.game.loser + 'Prog')
-                document.getElementById(data.winner + 'Title').style.color = 'orange';
                 loser.value = 0;
                 const winValue = data.winner.toUpperCase()
                 showOverlay(`<p>${winValue} WINS!!</p><button class="btn btn-sm" onClick="closeOverlay()">Close</button>`)

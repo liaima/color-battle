@@ -9,7 +9,7 @@ justify-content:center;
 }
 .container{
 margin-top: 5rem;
-width: 50%;
+width: 65%;
 height: 70vh;
 }
 @media (max-width: 481px) {
@@ -63,7 +63,6 @@ width: 20%;
 
 .flex{
   display: flex;
-  margin: 1em;
 }
 
 .w-100{
@@ -71,7 +70,12 @@ width: 20%;
 }
 
 .team-group{
-  margin: 1em;
+  flex-grow: 1;
+}
+
+.flex-grow-2{
+  flex-grow: 2;
+  width:20%;
 }
 
 #notPermission{

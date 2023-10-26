@@ -34,9 +34,9 @@ ws.onmessage = function (message) {
             document.getElementById('teamColor').style.background = team;
         } else if ( data.type === 'winner' ){
             if(team === data.winner){
-                showOverlay('<p>YOU WIN!!</p>')
+                showOverlay('<p>YOUR TEAM WINS!!</p>')
             } else {
-                showOverlay('<p>YOU LOSE!!</p>')
+                showOverlay('<p>YOUR TEAM LOSES!!</p>')
             }
         } else if ( data.type === 'reset' ) {
             location.reload()
