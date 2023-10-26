@@ -14,13 +14,21 @@
     <div id="main" class="container">
         <h1>Admin Panel</h1>
         <h2>Teams scores</h2>
-        <h4 id='redTitle'>Red</h4>
-        <div class="progress-group">
-            <progress id="redProg" value="0" max="100"></progress>
-        </div>
-        <h4 id='greenTitle'>Green</h4>
-        <div class="progress-group">
-            <progress id="greenProg" value="0" max="100"></progress>
+        <div id="teams" class="flex w-100">
+            <div id="redTeamGroup" class="team-group">
+                <h4 id='redTitle'>Red</h4>
+                <img src="../images/casle_red.png" alt="" class="w-100">
+                <div class="progress-group">
+                    <progress id="redProg" value="0" max="100"></progress>
+                </div>
+            </div>
+            <div id="greenTeamGroup" class="team-group">
+                <h4 id='greenTitle'>Green</h4>
+                <img src="../images/casle_green.png" alt="" class="w-100">
+                <div class="progress-group">
+                    <progress id="greenProg" value="0" max="100" style="direction: rtl;"></progress>
+                </div>
+            </div>
         </div>
         <div id="ip-qr">
             <h2>Conection Info: </h2>

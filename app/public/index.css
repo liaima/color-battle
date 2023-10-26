@@ -66,6 +66,14 @@ width: 20%;
   margin: 1em;
 }
 
+.w-100{
+  width: 100%;
+}
+
+.team-group{
+  margin: 1em;
+}
+
 #notPermission{
   display: none;
 }
