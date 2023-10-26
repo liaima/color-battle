@@ -6,21 +6,22 @@ const server = createServer((req, res) => {   // (1)
     return staticHandler(req, res, { public: 'public' })
 });
 const wss = new WebSocketServer({ server }) // (2)
-const teams = {
-    'red': {
-        'score': 0,
-        'members': []
-    },
-    'green': {
-        'score': 0,
-        'members': []
-    }
-}
 const admins = []
 const game = {
     status: 'in_process',
     max_score: 100,
-    winner: null
+    winner: null,
+    loser: null
+}
+const teams = {
+    'red': {
+        'score': game.max_score,
+        'members': []
+    },
+    'green': {
+        'score': game.max_score,
+        'members': []
+    }
 }
 
 wss.on('connection', (client) => {
@@ -43,8 +44,7 @@ wss.on('connection', (client) => {
                     teams
                 } 
             }else{
-                game.winner = winner;
-                game.status = 'finished';
+                setWinner(winner);
                 adminData = {
                     type: 'winner',
                     game,
@@ -98,6 +98,8 @@ wss.on('connection', (client) => {
             broadcast(msg, clients)
         } else if ( data.type === 'set-max_score' ) {
             game.max_score = data.maxScore;
+            teams.green.score = game.max_score;
+            teams.red.score = game.max_score;
         } else if ( data.type === 'pause') {
             if(game.status === 'in_process'){
                 game.status = 'pause'
@@ -170,15 +172,15 @@ function removeClient(client){
 
 function scoreUp(team, value)
 {
-    if ( team === 'red' ) {
-        teams.red.score += parseInt(value)
-        if (teams.red.score >= game.max_score){
-            return 'red'
+    if ( team === 'green' ) {
+        teams.red.score -= parseInt(value)
+        if (teams.red.score <= 0){
+            return team
         }
-    } else if ( team === 'green' ) {
-        teams.green.score += parseInt(value)
-        if (teams.green.score >= game.max_score){
-            return 'green'
+    } else if ( team === 'red' ) {
+        teams.green.score -= parseInt(value)
+        if (teams.green.score <= 0){
+            return team
         }
     }
 
@@ -187,10 +189,23 @@ function scoreUp(team, value)
 
 function reset()
 {
-    teams.red.score = 0
-    teams.green.score = 0
+    teams.red.score = game.max_score
+    teams.green.score = game.max_score
     game.status = 'in_process'
     game.winner = null
+    game.loser = null
+}
+
+function setWinner(winner)
+{
+    game.winner = winner;
+    game.status = 'finished';
+    if(winner === 'red'){
+        game.loser = 'green'
+    } else {
+        game.loser = 'red'
+    }
+
 }
 
 const port = process.argv[2] || 8080;

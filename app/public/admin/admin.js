@@ -33,10 +33,9 @@ if(localStorage.getItem('color-battle-admin')){
             } else if ( data.type === 'teams_data' ) {
                 setTeamsValues(data)
             } else if ( data.type === 'winner' ) {
-                const winner = document.getElementById(data.winner + 'Prog')
+                const loser = document.getElementById(data.game.loser + 'Prog')
                 document.getElementById(data.winner + 'Title').style.color = 'orange';
-                winner.value = winner.max;
-                document.getElementById(data.winner + 'Value').innerHTML = winner.value + " clicks";
+                loser.value = 0;
                 const winValue = data.winner.toUpperCase()
                 showOverlay(`<p>${winValue} WINS!!</p><button class="btn btn-sm" onClick="closeOverlay()">Close</button>`)
              } else if ( data.type === 'pause' ) {
@@ -73,9 +72,7 @@ if(localStorage.getItem('color-battle-admin')){
     function setTeamsValues(data)
     {
         document.getElementById('redProg').value = data.teams.red.score;
-        document.getElementById('redValue').innerHTML = data.teams.red.score + " clicks";
         document.getElementById('greenProg').value = data.teams.green.score;
-        document.getElementById('greenValue').innerHTML = data.teams.green.score + " clicks";
         console.info('Red: ' + data.teams.red.score)
         console.info('Green: ' + data.teams.green.score)
     }
