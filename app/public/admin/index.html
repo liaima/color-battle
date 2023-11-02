@@ -13,6 +13,9 @@
 <body>
     <div id="main" class="container">
         <h1>Admin Panel</h1>
+        <button id="reset" class="btn btn-sm">Reset game</button>
+        <button id="pause-btn" class="btn btn-sm">Pause</button>
+
         <h2>Teams scores</h2>
         <img src="../images/army.png" alt="" class="w-100">
         <div id="teams" class="flex w-100">
@@ -30,17 +33,23 @@
         </div>
         <div id="ip-qr">
             <h2>Conection Info: </h2>
-            <div class="flex">
-                <h4>http:://</h4>
-                <input id="ip-input" type="text">
+            <div id="conn-info" class="flex">
+                <div class="flex flex-grow-1">
+                    <h4>http:://</h4>
+                    <input id="ip-input" type="text">
+                    <button id="set-ip-btn" class="btn btn-sm">Set ip</button>
+                </div>
+                <div class="flex-grow-1">
+                    <div id="qrcode" src="" alt="">
+                </div>
             </div>
-            <div id="qrcode" src="" alt="">
         </div>
         <div id="max-score">
             <h2>Set Max Score: </h2>
             <div class="flex">
                 <h4>Max Score: </h4>
                 <input id="max-score-input" type="text">
+                <button id="set-max-score-btn" class="btn btn-sm">Set Max Score</button>
             </div>
         </div>
 
@@ -48,10 +57,6 @@
           <p></p>
         </div>
 
-        <button id="reset" class="btn btn-sm">Reset game</button>
-        <button id="set-ip-btn" class="btn btn-sm">Set ip</button>
-        <button id="set-max-score-btn" class="btn btn-sm">Set Max Score</button>
-        <button id="pause-btn" class="btn btn-sm">Pause</button>
     </div>
     <div id="notPermission">
         <h1>Permission denied</h1>
